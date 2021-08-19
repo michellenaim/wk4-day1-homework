@@ -17,13 +17,13 @@
       #leftside {
         float: left;
         width: 30%;
-        min-height: 1200px;
+        min-height: 1300px;
         background-color: rgb(77, 192, 154);
       }
       #rightside {
         float: left;
         width: 70%;
-        min-height: 1200px;
+        min-height: 1300px;
         background-color: rgb(238, 226, 192);
         position: relative;
       }
@@ -33,7 +33,7 @@
         top: 15%;
         left: 15%;
         min-width: 1100px;
-        min-height: 1050px;
+        min-height: 1135px;
         border-radius: 0.7em;
       }
       header {
@@ -73,6 +73,16 @@
         border: 2px solid rgba(83, 78, 58, 0.6);
         border-radius: 0.5em;
       }
+
+      .first-line {
+        display: flex;
+        align-items: center;
+      }
+
+      .first-line img {
+        margin-right: 15px;
+      }
+
       footer {
         position: absolute;
         bottom: 0;
@@ -99,33 +109,24 @@
         </div>
 
         <section id="blogposts">
-          <div class="post">
-            <span class="author">{{ brianna.name }}</span> —
-            <span class="date">{{ brianna.date }}</span>
-            <span class="reply">{{ brianna.reply }} </span>
-            <p>{{ brianna.message }}</p>
+          <div class="post" v-for="post in posts">
+            <div class="first-line">
+              <img v-on:click="showinfo" :src="post.profilepic" height=40/>
+              <div>
+                <span class="author">{{post.name}}</span>
+                <span class="date">{{post.date}}</span>
+                <span class="reply">{{post.reply}}</span>
+              </div>
+            </div>
+            <p>{{post.message}}</p>
           </div>
 
-          <div class="post">
-            <span class="author">{{ linh.name }}</span> —
-            <span class="date">{{ linh.date }}</span>
-            <span class="reply">{{ linh.reply }} </span>
-            <p>{{ linh.message }}</p>
-          </div>
-
-          <div class="post">
-            <span class="author">{{ catherine.name }}</span> —
-            <span class="date">{{ catherine.date }}</span>
-            <span class="reply">{{ catherine.reply }} </span>
-            <p>{{ catherine.message }}</p>
-          </div>
-
-          <div class="post">
-            <span class="author">{{ kali.name }}</span> —
-            <span class="date">{{ kali.date }}</span>
-            <span class="reply">{{ kali.reply }} </span>
-            <p>{{ kali.message }}</p>
-          </div>
+          <!-- <div id="info" v-for="post in posts">
+            <div id="close" v-on:click="closebox">X</div>
+            <h3>{{post.name}}</h3>
+            <p>{{post.level}}</p>
+            <p>{{post.bio}}</p>
+          </div> -->
         </section>
       </main>
 
@@ -149,35 +150,57 @@
       var blogPosts = new Vue({
         el: "#blogposts",
         data: {
-          brianna: {
-            name: "Brianna",
-            date: "February 18, 2021 @ 3:30 pm",
-            reply: "REPLY",
-            message:
-              "Was amazing! My Walmart didn’t have coriander in stock and didn’t have ground cumin. I used serrano instead of jalapeño. It was just like my favorite tortilla soup from BJs. I am sending this recipe to my family. I want everyone to try it!",
-          },
-          linh: {
-            name: "LINH",
-            date: "February 15, 2021 @ 9:46 am",
-            reply: "REPLY",
-            message:
-              "I just made this soup today and it’s so tasty! didn’t have corn at home but still turned out very good.  It’s a winner!  I made beef chili for my parents; but since my dad has gout he can’t eat beef; this white chicken chili is perfect for him.  Thank you Lisa!",
-          },
-          catherine: {
-            name: "CATHERINE LEONARDO",
-            date: "February 13, 2021 @ 12:58 pm",
-            reply: "REPLY",
-            message:
-              "I LOVE this White Chicken Chili! You are right, it is satiating meal—delicious with toasted bread. Refreshingly different taste than any chicken chili I’ve made in the past. I made it exactly as written and added some chopped zucchini, carrots, and celery. Instead of shredding the chicken, I chopped it into small pieces. It freezes very well. Will be an all-time favorite, for sure.",
-          },
-          kali: {
-            name: "KALI",
-            date: "February 13, 2021 @ 11:31 am",
-            reply: "REPLY",
-            message:
-              "This recipe is dynamite! My partner usually won’t eat beans but he finished the whole pot (darn was hoping to have some for leftovers haha). This is crowd-pleaser that I am going to add to my regular recipe rotation. Thanks so much, Lisa!",
-          },
+          posts : [
+            {
+              profilepic: "/images /profile.png",
+              name: "Brianna",
+              date: "February 18, 2021 @ 3:30 pm",
+              reply: "REPLY",
+              message:
+                "Was amazing! My Walmart didn’t have coriander in stock and didn’t have ground cumin. I used serrano instead of jalapeño. It was just like my favorite tortilla soup from BJs. I am sending this recipe to my family. I want everyone to try it!",
+              level: "Foodie Level: Novice",
+              bio: "Bio: Food enthusiast. Love to cook and experiment. Into only organic, fat free, sugar free stuffs!",
+            },
+            {
+              profilepic: "/images /profile.png",
+              name: "LINH",
+              date: "February 15, 2021 @ 9:46 am",
+              reply: "REPLY",
+              message:
+                "I just made this soup today and it’s so tasty! didn’t have corn at home but still turned out very good.  It’s a winner!  I made beef chili for my parents; but since my dad has gout he can’t eat beef; this white chicken chili is perfect for him.  Thank you Lisa!",
+              level: "Foodie Level: Newcomer",
+              bio: "Bio: Love food! Grew up with meat and potatoes. Recently venture outside my comfort zone. Loving everything I have been eating so far. Thai is my favorite at this time.",
+            },
+            {
+              profilepic: "/images /profile.png",
+              name: "CATHERINE LEONARDO",
+              date: "February 13, 2021 @ 12:58 pm",
+              reply: "REPLY",
+              message:
+                "I LOVE this White Chicken Chili! You are right, it is satiating meal—delicious with toasted bread. Refreshingly different taste than any chicken chili I’ve made in the past. I made it exactly as written and added some chopped zucchini, carrots, and celery. Instead of shredding the chicken, I chopped it into small pieces. It freezes very well. Will be an all-time favorite, for sure.",
+              level: "Foodie Level: Mentor",
+              bio: "Bio: I have to say I never was the adventurous type until 2 years ago. My boyfriend, who is of Japanese background, exposed me to other cultural food and I have never look back since!",
+            },
+            {
+              profilepic: "/images /profile.png",
+              name: "KALI",
+              date: "February 13, 2021 @ 11:31 am",
+              reply: "REPLY",
+              message:
+                "This recipe is dynamite! My partner usually won’t eat beans but he finished the whole pot (darn was hoping to have some for leftovers haha). This is crowd-pleaser that I am going to add to my regular recipe rotation. Thanks so much, Lisa!",
+              level: "Foodie Level: Novice",
+              bio: "Bio: Food is my passion. So is cooking. I love to experiment and try new things. I have to admit I'm a food whore! Invite me over for dinner and I'll be there!",
+            },
+          ]
         },
+        methods: {
+          showinfo: function(){
+            document.getElementById("info").style.visibility = "visible";
+          },
+          closeinfo: function() {
+            document.getElementById("info").style.visibility = "hidden";
+          }
+        }
       });
     </script>
   </body>
