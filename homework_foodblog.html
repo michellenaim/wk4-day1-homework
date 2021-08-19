@@ -83,6 +83,41 @@
         margin-right: 15px;
       }
 
+      .first-line img:hover {
+        cursor: pointer;
+      }
+
+      #info {
+        position: absolute;
+        top: 280px;
+        left: 35%;
+        width: 300px;
+        height: 400px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px;
+        visibility: hidden;
+        border-radius: 5%;
+      }
+
+      .box-info {
+        margin: 10px;
+      }
+
+      #close {
+        justify-content: flex-end;
+        display: flex;
+        margin-right: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+      #button-close {
+        margin-top: 135px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+
       footer {
         position: absolute;
         bottom: 0;
@@ -121,12 +156,15 @@
             <p>{{post.message}}</p>
           </div>
 
-          <!-- <div id="info" v-for="post in posts">
-            <div id="close" v-on:click="closebox">X</div>
-            <h3>{{post.name}}</h3>
-            <p>{{post.level}}</p>
-            <p>{{post.bio}}</p>
-          </div> -->
+          <div id="info" v-for="post in posts">
+            <div class="box-info">
+              <div id="close" v-on:click="closeinfo">X</div>
+              <h1>{{post.name}}</h1>
+              <p><b>Foodie Level: </b>{{post.level}}</p>
+              <p><b>Bio:</b><br> {{post.bio}}</p>
+            </div>
+            <button id="button-close" v-on:click="closeinfo">Close</button>
+          </div>
         </section>
       </main>
 
@@ -150,7 +188,7 @@
       var blogPosts = new Vue({
         el: "#blogposts",
         data: {
-          posts : [
+          posts: [
             {
               profilepic: "/images /profile.png",
               name: "Brianna",
@@ -158,8 +196,8 @@
               reply: "REPLY",
               message:
                 "Was amazing! My Walmart didn’t have coriander in stock and didn’t have ground cumin. I used serrano instead of jalapeño. It was just like my favorite tortilla soup from BJs. I am sending this recipe to my family. I want everyone to try it!",
-              level: "Foodie Level: Novice",
-              bio: "Bio: Food enthusiast. Love to cook and experiment. Into only organic, fat free, sugar free stuffs!",
+              level: "Novice",
+              bio: "Food enthusiast. Love to cook and experiment. Into only organic, fat free, sugar free stuffs!",
             },
             {
               profilepic: "/images /profile.png",
@@ -168,8 +206,8 @@
               reply: "REPLY",
               message:
                 "I just made this soup today and it’s so tasty! didn’t have corn at home but still turned out very good.  It’s a winner!  I made beef chili for my parents; but since my dad has gout he can’t eat beef; this white chicken chili is perfect for him.  Thank you Lisa!",
-              level: "Foodie Level: Newcomer",
-              bio: "Bio: Love food! Grew up with meat and potatoes. Recently venture outside my comfort zone. Loving everything I have been eating so far. Thai is my favorite at this time.",
+              level: "Newcomer",
+              bio: "Love food! Grew up with meat and potatoes. Recently venture outside my comfort zone. Loving everything I have been eating so far. Thai is my favorite at this time.",
             },
             {
               profilepic: "/images /profile.png",
@@ -178,8 +216,8 @@
               reply: "REPLY",
               message:
                 "I LOVE this White Chicken Chili! You are right, it is satiating meal—delicious with toasted bread. Refreshingly different taste than any chicken chili I’ve made in the past. I made it exactly as written and added some chopped zucchini, carrots, and celery. Instead of shredding the chicken, I chopped it into small pieces. It freezes very well. Will be an all-time favorite, for sure.",
-              level: "Foodie Level: Mentor",
-              bio: "Bio: I have to say I never was the adventurous type until 2 years ago. My boyfriend, who is of Japanese background, exposed me to other cultural food and I have never look back since!",
+              level: "Mentor",
+              bio: "I have to say I never was the adventurous type until 2 years ago. My boyfriend, who is of Japanese background, exposed me to other cultural food and I have never look back since!",
             },
             {
               profilepic: "/images /profile.png",
@@ -188,8 +226,8 @@
               reply: "REPLY",
               message:
                 "This recipe is dynamite! My partner usually won’t eat beans but he finished the whole pot (darn was hoping to have some for leftovers haha). This is crowd-pleaser that I am going to add to my regular recipe rotation. Thanks so much, Lisa!",
-              level: "Foodie Level: Novice",
-              bio: "Bio: Food is my passion. So is cooking. I love to experiment and try new things. I have to admit I'm a food whore! Invite me over for dinner and I'll be there!",
+              level: "Novice",
+              bio: "Food is my passion. So is cooking. I love to experiment and try new things. I have to admit I'm a food whore! Invite me over for dinner and I'll be there!",
             },
           ]
         },
