@@ -96,7 +96,6 @@
         background: rgba(0, 0, 0, 0.8);
         color: white;
         padding: 10px;
-        visibility: hidden;
         border-radius: 5%;
       }
 
@@ -113,9 +112,10 @@
       }
 
       #button-close {
-        margin-top: 135px;
         margin-left: 10px;
         cursor: pointer;
+        position: absolute;
+        bottom: 25px;
       }
 
       footer {
@@ -146,7 +146,7 @@
         <section id="blogposts">
           <div class="post" v-for="post in posts">
             <div class="first-line">
-              <img v-on:click="showinfo" :src="post.profilepic" height=40/>
+              <img v-on:click="showinfo(posts, post)" :src="post.profilepic" height=40/>
               <div>
                 <span class="author">{{post.name}}</span>
                 <span class="date">{{post.date}}</span>
@@ -156,14 +156,14 @@
             <p>{{post.message}}</p>
           </div>
 
-          <div id="info" v-for="post in posts">
+          <div id="info" v-for="post in posts" v-if="post.thisBox">
             <div class="box-info">
-              <div id="close" v-on:click="closeinfo">X</div>
+              <div id="close" v-on:click="post.thisBox = false">X</div>
               <h1>{{post.name}}</h1>
               <p><b>Foodie Level: </b>{{post.level}}</p>
               <p><b>Bio:</b><br> {{post.bio}}</p>
             </div>
-            <button id="button-close" v-on:click="closeinfo">Close</button>
+            <button id="button-close" v-on:click="post.thisBox = false">Close</button>
           </div>
         </section>
       </main>
@@ -198,6 +198,7 @@
                 "Was amazing! My Walmart didn’t have coriander in stock and didn’t have ground cumin. I used serrano instead of jalapeño. It was just like my favorite tortilla soup from BJs. I am sending this recipe to my family. I want everyone to try it!",
               level: "Novice",
               bio: "Food enthusiast. Love to cook and experiment. Into only organic, fat free, sugar free stuffs!",
+              thisBox: false,
             },
             {
               profilepic: "/images /profile.png",
@@ -208,6 +209,7 @@
                 "I just made this soup today and it’s so tasty! didn’t have corn at home but still turned out very good.  It’s a winner!  I made beef chili for my parents; but since my dad has gout he can’t eat beef; this white chicken chili is perfect for him.  Thank you Lisa!",
               level: "Newcomer",
               bio: "Love food! Grew up with meat and potatoes. Recently venture outside my comfort zone. Loving everything I have been eating so far. Thai is my favorite at this time.",
+              thisBox: false,
             },
             {
               profilepic: "/images /profile.png",
@@ -218,6 +220,7 @@
                 "I LOVE this White Chicken Chili! You are right, it is satiating meal—delicious with toasted bread. Refreshingly different taste than any chicken chili I’ve made in the past. I made it exactly as written and added some chopped zucchini, carrots, and celery. Instead of shredding the chicken, I chopped it into small pieces. It freezes very well. Will be an all-time favorite, for sure.",
               level: "Mentor",
               bio: "I have to say I never was the adventurous type until 2 years ago. My boyfriend, who is of Japanese background, exposed me to other cultural food and I have never look back since!",
+              thisBox: false,
             },
             {
               profilepic: "/images /profile.png",
@@ -228,16 +231,17 @@
                 "This recipe is dynamite! My partner usually won’t eat beans but he finished the whole pot (darn was hoping to have some for leftovers haha). This is crowd-pleaser that I am going to add to my regular recipe rotation. Thanks so much, Lisa!",
               level: "Novice",
               bio: "Food is my passion. So is cooking. I love to experiment and try new things. I have to admit I'm a food whore! Invite me over for dinner and I'll be there!",
+              thisBox: false,
             },
           ]
         },
         methods: {
-          showinfo: function(){
-            document.getElementById("info").style.visibility = "visible";
+          showinfo: function(posts, post){
+            for(var i = 0; i < posts.length; i++){
+              posts[i].thisBox = false;
+              post.thisBox = true;
+            }
           },
-          closeinfo: function() {
-            document.getElementById("info").style.visibility = "hidden";
-          }
         }
       });
     </script>
